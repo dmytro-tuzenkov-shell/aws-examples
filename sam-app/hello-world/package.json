@@ -13,7 +13,7 @@
   },
   "scripts": {
     "test": "jest",
-    "compile": "tsc",
+    "build": "tsc",
     "dev": "ts-node-dev ./src/app"
   },
   "devDependencies": {
