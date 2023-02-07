@@ -1,4 +1,5 @@
-import { Context, APIGatewayProxyResult, APIGatewayEvent } from "aws-lambda";
+import 'dotenv/config'
+import { Context, APIGatewayProxyResult, APIGatewayEvent } from "aws-lambda"
 
 export const lambdaHandler = async (
   event: APIGatewayEvent,
@@ -14,3 +15,5 @@ export const lambdaHandler = async (
     }),
   };
 };
+
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
