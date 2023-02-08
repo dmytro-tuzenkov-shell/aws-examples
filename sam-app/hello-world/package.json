@@ -8,8 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.266.1",
+    "@types/debug": "^4.1.7",
     "aws-lambda": "^1.0.7",
     "axios": ">=0.21.1",
+    "debug": "^4.3.4",
     "dotenv": "^16.0.3",
     "inversify": "^6.0.1",
     "reflect-metadata": "^0.1.13"
@@ -17,7 +19,7 @@
   "scripts": {
     "test": "jest",
     "build": "tsc",
-    "dev": "ts-node-dev ./src/app"
+    "dev": "DEBUG=* ts-node-dev --transpile-only --respawn --inspect=9009 ./debug.ts"
   },
   "devDependencies": {
     "@aws-sdk/types": "^3.266.1",

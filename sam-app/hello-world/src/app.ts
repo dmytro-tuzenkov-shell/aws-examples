@@ -1,19 +1,26 @@
-import 'dotenv/config'
-import { Context, APIGatewayProxyResult, APIGatewayEvent } from "aws-lambda"
+import debug from "debug";
+import { inject, injectable } from "inversify";
+import * as AWSS3 from "@aws-sdk/client-s3";
+import { TYPES } from "./ioc";
+import { APIGatewayEvent, Context } from "aws-lambda";
+const _debug = debug("app:application");
 
-export const lambdaHandler = async (
-  event: APIGatewayEvent,
-  context: Context
-): Promise<APIGatewayProxyResult> => {
-  console.log(`Event: ${JSON.stringify(event, null, 2)}`);
-  console.log(`Context: ${JSON.stringify(context, null, 2)}`);
-  
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: "hello world",
-    }),
-  };
-};
+@injectable()
+export class Application {
+  constructor(
+    @inject(TYPES.FactoryAmazonStorageClient)
+    private readonly _storageClient: () => AWSS3.S3Client
+  ) {
+    this._storageClient = _storageClient;
+    _debug("application constructor %s", _storageClient());
+  }
 
-console.log("process.env", process.env.AWS_REGION);
+  async handle(event: APIGatewayEvent, context: Context): Promise<{ statusCode: number; json: any }> {
+    // const _storageClient = this._storageClient();
+    
+    return {
+      statusCode: 200,
+      json: { message: "Application.handle" },
+    };
+  }
+}

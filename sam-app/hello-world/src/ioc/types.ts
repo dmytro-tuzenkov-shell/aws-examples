@@ -3,4 +3,6 @@ export const TYPES = {
   FactoryAmazonStorageClient: Symbol.for("Factory<AmazonStorageClient>"),
 
   AmazonStorageService: Symbol.for("AmazonStorageService"),
+
+  Application: Symbol.for('Application')
 };
